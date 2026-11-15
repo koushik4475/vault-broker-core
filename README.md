@@ -1,4 +1,7 @@
-# ⚡ `vault-broker-core`
+# Vault Broker Core | Go Secrets Management, Dynamic Credentials and Key Rotation
+
+Vault Broker Core is a Go project for coordinating secrets and short-lived credentials across services and infrastructure. Its documented capabilities include envelope encryption, Shamir secret sharing, expiring credential leases, rotation workflows, and cloud/database provider integrations. It is relevant to platform teams researching secrets orchestration and zero-trust credential lifecycles; review the implementation and threat model before storing production secrets.
+
 ### *Cloud-Agnostic Secret Orchestration & Ephemeral Credential Broker*
 
 <p align="center">
