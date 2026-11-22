@@ -178,3 +178,11 @@ func TestProvidersE2E(t *testing.T) {
 		t.Fatal("expected dynamic database user to be dropped upon lease revocation")
 	}
 }
+
+
+func TestLeaseManagerStopIsIdempotent(t *testing.T) {
+	mgr := lease.NewManager(time.Hour)
+
+	mgr.Stop()
+	mgr.Stop()
+}
