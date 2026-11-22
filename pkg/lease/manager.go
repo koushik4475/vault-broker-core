@@ -57,6 +57,7 @@ type Manager struct {
 	mu            sync.RWMutex
 	leases        map[string]*Lease
 	stopCh        chan struct{}
+	stopOnce      sync.Once
 	cleanupTicker *time.Ticker
 	onRevokeHook  func(l *Lease)
 }
@@ -248,8 +249,10 @@ func (m *Manager) sweepExpired() {
 
 // Stop gracefully shuts down the lease manager reaper.
 func (m *Manager) Stop() {
-	m.cleanupTicker.Stop()
-	close(m.stopCh)
+	m.stopOnce.Do(func() {
+		m.cleanupTicker.Stop()
+		close(m.stopCh)
+	})
 }
 
 // ActiveCount returns number of currently active or renewed leases.
